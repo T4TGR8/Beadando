@@ -8,7 +8,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 		'password1' => $_POST['password1']
 	];
 
-
 	if(empty($postData['uname']) || empty($postData['email']) || empty($postData['email1']) || empty($postData['password']) || empty($postData['password1'])) {
 		echo "Hiányzó adat(ok)!";
 	} else if($postData['email'] != $postData['email1']) {

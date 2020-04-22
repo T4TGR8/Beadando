@@ -8,19 +8,9 @@
 		}
 	}
 ?>
+
 <?php 
-	if(array_key_exists('o', $_GET) && !empty($_GET['o'])) {
-		$query = "SELECT title, ftext FROM threads WHERE id = :id";
-		$params = [':id' => $_GET['o']];
-		require_once DATABASE_CONTROLLER;
-		if(!executeDML($query, $params)) {
-			echo "Hiba!";
-		}
-		echo "$query";
-	}
-?>
-<?php 
-	$query = "SELECT id, title FROM threads";
+	$query = "SELECT id, title, author, created FROM threads ORDER BY created desc";
 	require_once DATABASE_CONTROLLER;
 	$threads = getList($query);
 ?>
@@ -31,7 +21,8 @@
 		<thead>
 			<tr>
 				<th scope="col">Title</th>
-				<th scope="col"></th>
+				<th scope="col" class="right">Author</th>
+				<th scope="col" class="right">Created</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
@@ -42,7 +33,8 @@
 				<?php $i++; ?>
 				<tr>
 					<td><a href="index.php?P=open_thread"><?=$t['title'] ?></td>
-					<td></td>
+					<td align='right'><?=$t['author'] ?></td>
+					<td align='right'><?=$t['created'] ?></td>
 					<td></td>
 				</tr>
 			<?php endforeach;?>
@@ -53,9 +45,10 @@
 				<?php foreach ($threads as $t) : ?>
 					<?php $i++; ?>
 					<tr>
-						<td><a href="?P=home&o=<?=$t['id'] ?>"><?=$t['title'] ?></td>
-						<td></td>
-						<td align='right'><a href="#">&#9998 </a><a href="?P=home&d=<?=$t['id'] ?>">&#128465</a></td>
+						<td><a href="index.php?P=open_thread&o=<?=$t['id'] ?>"><?=$t['title'] ?></td>
+						<td align='right'><?=$t['author'] ?></td>
+						<td align='right'><?=$t['created'] ?></td>
+						<td align='right'><a href="#">&#9998 </a> | <a href="?P=home&d=<?=$t['id'] ?>">&#128465</a></td>
 					</tr>
 				<?php endforeach;?>
 			</tbody>

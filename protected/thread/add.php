@@ -13,10 +13,12 @@
 			echo "Hiányzó adat(ok)!";
 		}
 		else {
-			$query = "INSERT INTO threads (title, ftext) VALUES (:title, :ftext)";
+			$query = "INSERT INTO threads (title, ftext, author, created) VALUES (:title, :ftext, :author, :created)";
 			$params = [
 				':title' => $postData['title'],
-				':ftext' => $postData['ftext']
+				':ftext' => $postData['ftext'],
+				':author' => $_SESSION['uname'],
+				':created' => date("Y-m-d H:i:s")
 			];
 			require_once DATABASE_CONTROLLER;
 			if(!executeDML($query, $params)) {
