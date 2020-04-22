@@ -1,0 +1,34 @@
+body {
+	background-color: lightgray;
+}
+
+header {
+	padding: 0.5em 0 0.5em 1em;
+	font-size: 2em;
+}
+
+nav {
+	border-radius: 15px;
+	padding: 1em 2em 1em 2em;
+	background-color: darkgray;
+}
+
+content {
+	margin: 0em 2em 0em 2em;
+}
+
+.loginandstuff {
+	float: right;
+}
+
+a:link {
+	color: darkblue;
+}
+
+a:visited {
+	color:darkblue;
+}
+
+a:hover {
+	text-decoration: none;
+}
