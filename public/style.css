@@ -21,6 +21,10 @@ content {
 	float: right;
 }
 
+.deleteandedit {
+	text-align: right;
+}
+
 a:link {
 	color: darkblue;
 }
