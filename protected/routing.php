@@ -9,6 +9,10 @@ switch ($_GET['P']) {
 
 	case 'open_thread': require_once PROTECTED_DIR.'thread/open.php'; break;
 
+	case 'update_thread': IsUserLoggedIn() ? require_once PROTECTED_DIR.'thread/update.php' : header('Location: index.php'); break;
+
+	case 'my_thread': IsUserLoggedIn() ? require_once PROTECTED_DIR.'thread/mythreads.php' : header('Location: index.php'); break;
+
 	case 'login': !IsUserLoggedIn() ? require_once PROTECTED_DIR.'user/login.php' : header('Location: index.php'); break;
 
 	case 'register': !IsUserLoggedIn() ? require_once PROTECTED_DIR.'user/register.php' : header('Location: index.php'); break;

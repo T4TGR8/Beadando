@@ -7,6 +7,9 @@
 <?php else : ?>
 <span> &nbsp; | &nbsp; </span>
 <a href="index.php?P=add_thread">New thread</a>
+<span> &nbsp; | &nbsp; </span>
+<a href="index.php?P=my_thread">My threads</a>
+
 
 <a href="index.php?P=logout" class="loginandstuff">Logout</a>
 

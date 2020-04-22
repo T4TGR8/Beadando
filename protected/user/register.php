@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 	} else if(strlen($postData['password']) < 6) {
 		echo "A jelszó túl rövid! Legalább 6 karakter hosszúnak kell lennie!";
 	} else if(!UserRegister($postData['email'], $postData['password'], $postData['uname'])) {
-		echo "Sikertelen regisztráció!";
+		echo "Foglalat felhasználónév vagy email!";
 	}
 
 	$postData['password'] = $postData['password1'] = "";

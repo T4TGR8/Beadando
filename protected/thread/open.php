@@ -11,5 +11,5 @@
 	
 	echo "<h2>".$openthread['title']."</h2>";
 	echo "<br>";
-	echo $openthread['ftext'];
+	echo nl2br($openthread['ftext']);
 ?>
