@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['updateUser'])) {
 <form method="post">
 	<div class="form-row">
 		<div class="form-group col-md-12">
-	    	<label for="updatePermission">Permission</label>
+	    	<label for="updatePermission"><?php echo $updateuser['username'] ?></label>
 	    	<select class="form-control" id="updatePermission" name="permission">
 	      		<option value="0">User</option>
 	      		<option value="1">Admin</option>
