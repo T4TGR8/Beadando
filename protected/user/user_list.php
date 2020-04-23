@@ -38,7 +38,7 @@
 						<td><?=$u['username'] ?></td>
 						<td><?=$u['email'] ?></td>
 						<td><?=$u['permission'] ?></td>
-						<td align='right'><a href="index.php?P=users&d=<?=$u['id'] ?>">&#128465</a></td>
+						<td align='right'><a href="index.php?P=update_users&u=<?=$u['id'] ?>">&#9998 </a> | <a href="index.php?P=users&d=<?=$u['id'] ?>">&#128465</a></td>
 					</tr>
 				<?php endforeach;?>
 			</tbody>

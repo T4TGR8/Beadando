@@ -1,7 +1,7 @@
 <?php 
-	if(array_key_exists('d', $_GET) && !empty($_GET['d'])) {
+	if(array_key_exists('dc', $_GET) && !empty($_GET['dc'])) {
 		$query = "DELETE FROM comments WHERE id = :id";
-		$params = [':id' => $_GET['d']];
+		$params = [':id' => $_GET['dc']];
 		require_once DATABASE_CONTROLLER;
 		if(!executeDML($query, $params)) {
 			echo "Hiba törlés közben!";
@@ -10,7 +10,7 @@
 ?>
 <?php
 	if(array_key_exists('o', $_GET) && !empty($_GET['o'])) {
-		$query = "SELECT id, title, ftext FROM threads WHERE id = :id";
+		$query = "SELECT id, title, ftext, author, created FROM threads WHERE id = :id";
 		$params = [':id' => $_GET['o']];
 		require_once DATABASE_CONTROLLER;
 		$openthread = getRecord($query, $params);
@@ -30,7 +30,7 @@
 	<table class = "table">
 			<thead>
 				<tr>
-					<th scope="col"><?php echo "<h2>".$openthread['title']."</h2>" ?></th>
+					<th scope="col"><?php echo "<h2>".$openthread['title']."</h2><br>" ?><?php echo $openthread['author'] ?> <?php echo $openthread['created'] ?></th>
 				</tr>
 			</thead>
 				<tbody>
@@ -52,13 +52,15 @@
 	<table class = "table">
 			<thead>
 				<tr>
-					<th scope="col"><?php echo "<h2>".$openthread['title']."</h2>" ?></th>
-					<th></th>
+					<th scope="col"><?php echo "<h2>".$openthread['title']."</h2><br>" ?><?php echo $openthread['author'] ?> <?php echo $openthread['created'] ?></th>
+					<?php if($_SESSION['permission'] > 0) : ?>
+					<th class="right"><a href="index.php?P=update_thread&u=<?=$openthread['id'] ?>">&#9998 </a> | <a href="index.php?P=home&d=<?=$openthread['id'] ?>">&#128465</a></th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 				<tbody>
 					<tr>
-						<td><?php echo nl2br($openthread['ftext']) ?></td>
+						<td colspan="2"><?php echo nl2br($openthread['ftext']) ?></td>
 					</tr>
 					<?php if(count($comments) > 0) : ?>
 					<?php $i = 0; ?>
@@ -67,7 +69,7 @@
 						<tr>
 							<td><?=$c['ctext'] ?><?php echo "<br>"; ?><b><?=$c['author'] ?><?php echo " "; ?><?=$c['comcreated'] ?></b></td>
 							<?php if($_SESSION['permission'] > 0) : ?>
-							<td align='right'><a href="index.php?P=open_thread&o=<?=$openthread['id'] ?>&d=<?=$c['id'] ?>">&#128465</a></td>
+							<td align='right'><a href="index.php?P=open_thread&o=<?=$openthread['id'] ?>&dc=<?=$c['id'] ?>">&#128465</a></td>
 							<?php endif; ?>
 						</tr>
 					<?php endforeach;?>

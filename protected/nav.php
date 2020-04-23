@@ -18,4 +18,3 @@
 		<a href="index.php?P=users" class="loginandstuff">User list</a>
 	<?php endif; ?>
 <?php endif; ?>
-
