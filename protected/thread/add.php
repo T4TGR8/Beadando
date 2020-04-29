@@ -1,31 +1,30 @@
-<?php if(!isset($_SESSION['permission']) || $_SESSION['permission'] < 0) : ?>
+<?php if(!isset($_SESSION['permission'])) : ?>
 	<h1>Page access is forbidden!</h1>
 <?php else : ?>
-
 	<?php
-	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addThread'])) {
-		$postData = [
-			'title' => $_POST['title'],
-			'ftext' => $_POST['ftext']
-		];
-
-		if(empty($postData['title']) || empty($postData['ftext'])) {
-			echo "Hiányzó adat(ok)!";
-		}
-		else {
-			$query = "INSERT INTO threads (title, ftext, author, created) VALUES (:title, :ftext, :author, :created)";
-			$params = [
-				':title' => $postData['title'],
-				':ftext' => $postData['ftext'],
-				':author' => $_SESSION['uname'],
-				':created' => date("Y-m-d H:i:s")
+		if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addThread'])) {
+			$postData = [
+				'title' => $_POST['title'],
+				'ftext' => $_POST['ftext']
 			];
-			require_once DATABASE_CONTROLLER;
-			if(!executeDML($query, $params)) {
-				echo "Hiba az adatbevitel során!";
-			} header('Location: index.php');
+
+			if(empty($postData['title']) || empty($postData['ftext'])) {
+				echo "Hiányzó adat(ok)!";
+			}
+			else {
+				$query = "INSERT INTO threads (title, ftext, author, created) VALUES (:title, :ftext, :author, :created)";
+				$params = [
+					':title' => $postData['title'],
+					':ftext' => $postData['ftext'],
+					':author' => $_SESSION['uname'],
+					':created' => date("Y-m-d H:i:s")
+				];
+				require_once DATABASE_CONTROLLER;
+				if(!executeDML($query, $params)) {
+					echo "Hiba az adatbevitel során!";
+				} header('Location: index.php');
+			}
 		}
-	}
 	?>
 
 	<form method="post">

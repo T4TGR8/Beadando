@@ -1,21 +1,23 @@
 <?php if(!isset($_SESSION['permission']) || $_SESSION['permission'] < 1) : ?>
 	<h1>Page access is forbidden!</h1>
 <?php else : ?>
-<?php 
-	if(array_key_exists('d', $_GET) && !empty($_GET['d'])) {
-		$query = "DELETE FROM users WHERE id = :id";
-		$params = [':id' => $_GET['d']];
-		require_once DATABASE_CONTROLLER;
-		if(!executeDML($query, $params)) {
-			echo "Hiba törlés közben!";
-		}
-	}
-?>
 	<?php 
-	$query = "SELECT id, username, email, permission FROM users";
-	require_once DATABASE_CONTROLLER;
-	$users = getList($query);
+		if(array_key_exists('d', $_GET) && !empty($_GET['d'])) {
+			$query = "DELETE FROM users WHERE id = :id";
+			$params = [':id' => $_GET['d']];
+			require_once DATABASE_CONTROLLER;
+			if(!executeDML($query, $params)) {
+				echo "Hiba törlés közben!";
+			}
+		}
 	?>
+
+	<?php 
+		$query = "SELECT id, username, email, permission FROM users";
+		require_once DATABASE_CONTROLLER;
+		$users = getList($query);
+	?>
+	
 	<?php if(count($users) <= 0) : ?>
 		<h1>No users found in the database.</h1>
 	<?php else : ?>
