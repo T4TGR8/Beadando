@@ -38,6 +38,9 @@
 			<tr>
 				<td><?php echo nl2br($openthread['ftext']) ?></td>
 			</tr>
+			<tr>
+				<td><b>Comments:</b></td>
+			</tr>
 			<?php if(count($comments) > 0) : ?>
 				<?php $i = 0; ?>
 				<?php foreach ($comments as $c) : ?>
@@ -62,6 +65,9 @@
 		<tbody>
 			<tr>
 				<td colspan="2"><?php echo nl2br($openthread['ftext']) ?></td>
+			</tr>
+			<tr>
+				<td><b>Comments:</b></td>
 			</tr>
 			<?php if(count($comments) > 0) : ?>
 				<?php $i = 0; ?>
